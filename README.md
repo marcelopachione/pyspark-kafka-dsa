@@ -1,1 +1,1 @@
-# pyspark-kafka-dsa
+# Lab Spark + Kafka
