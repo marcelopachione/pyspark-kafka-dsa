@@ -1,11 +1,12 @@
 # Projeto 1 - Pipeline PySpark Para Extrair, Transformar e Carregar Arquivos JSON em Banco de Dados
 
 # Import
-# pip install sqlite3
+import os
 import sqlite3
 
 # Conecta ao banco de dados SQLite (cria se o arquivo não existir)
-conexao = sqlite3.connect('../../../storage/dsa-usuarios.db')
+db_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..', 'storage', 'dsa-usuarios.db'))
+conexao = sqlite3.connect(db_path)
 
 # Cria a tabela
 cursor = conexao.cursor()
