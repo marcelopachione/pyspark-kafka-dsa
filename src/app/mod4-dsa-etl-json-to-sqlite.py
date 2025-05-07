@@ -13,14 +13,14 @@ docker exec -it dsa-pyspark-master /opt/spark/bin/spark-submit \
     --jars /opt/spark/storage/jars/sqlite-jdbc-3.44.1.0.jar \
     --master spark://spark-master:7077 \
     --deploy-mode client \
-    /opt/spark/apps/dsa-etl-json-to-sqlite.py 
+    /opt/spark/apps/mod4-dsa-etl-json-to-sqlite.py 
 
 ou
 
 docker exec -it dsa-pyspark-master ./bin/spark-submit \
     --jars ./storage/jars/sqlite-jdbc-3.44.1.0.jar \
     --deploy-mode client \
-    ./apps/dsa-etl-json-to-sqlite.py 
+    ./apps/mod4-dsa-etl-json-to-sqlite.py 
 """
 
 # Importing necessary libraries
