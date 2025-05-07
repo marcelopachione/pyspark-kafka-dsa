@@ -1,35 +1,35 @@
-# Spark Cluster with Docker Deployment
+# Cluster Spark com Deploy via Docker
 
-## Prerequisites
+## Pré-requisitos
 - Docker
 - Docker Compose
 - Git
 
-## Environment Setup
+## Configuração do Ambiente
 
-### 1. Clone the Repository
+### 1. Clone o Repositório
 ```bash
-git clone <repository-url>
-cd <repository-directory>
+git clone <url-do-repositorio>
+cd <diretorio-do-repositorio>
 ```
 
-### 2. Navigate to Build Directory
+### 2. Navegue até o Diretório de Build
 ```bash
 cd build
 ```
 
-### 3. Create .env.spark File
-Create a `.env.spark` file in the build directory with the following content:
+### 3. Crie o Arquivo .env.spark
+Crie um arquivo `.env.spark` no diretório `build` com o seguinte conteúdo:
 ```bash
 SPARK_NO_DAEMONIZE=true
 ```
 
-### 4. Build and Start Spark Cluster
+### 4. Construa e Inicie o Cluster Spark
 ```bash
 docker-compose -f docker-compose.yml up -d --scale spark-worker=3
 ```
 
-### 5. Verify Deployment
+### 5. Verifique o Deploy
 ```bash
 docker ps
 
@@ -37,10 +37,9 @@ docker logs dsa-pyspark-master
 docker logs dsa-pyspark-cluster-spark-worker-1
 docker logs dsa-pyspark-cluster-spark-worker-2
 docker logs dsa-pyspark-cluster-spark-worker-3
-
 ```
 
-### 6. Test Spark Cluster
+### 6. Teste o Cluster Spark
 ```bash
 docker exec -it dsa-pyspark-master /opt/spark/bin/spark-submit \
   --master spark://spark-master:7077 \
@@ -48,32 +47,32 @@ docker exec -it dsa-pyspark-master /opt/spark/bin/spark-submit \
   /opt/spark/apps/get-users-json.py
 ```
 
-### 7. Stop Spark Cluster
+### 7. Pare o Cluster Spark
 ```bash
 docker-compose down
 ```
 
-## Cluster Components
-- **Spark Master**: Runs on port 9091
-- **Spark Workers**: 3 workers configured
-- **Spark History Server**: Runs on port 18081
+## Componentes do Cluster
+- **Spark Master**: Executando na porta 9091
+- **Spark Workers**: 3 workers configurados
+- **Spark History Server**: Executando na porta 18081
 
-## Accessing Services
-- Spark Master UI: http://localhost:9091
-- Spark History Server: http://localhost:18081
+## Acesso aos Serviços
+- Interface Spark Master: [http://localhost:9091](http://localhost:9091)
+- Spark History Server: [http://localhost:18081](http://localhost:18081)
 
-## Included Technologies
+## Tecnologias Incluídas
 - Spark 3.5.0
 - Python 3
 - PySpark
 - Pandas
 
-## Troubleshooting
-- Ensure all paths in `.env.spark` are absolute and correct
-- Check Docker and Docker Compose versions
-- Verify network ports are not in use by other services
+## Solução de Problemas
+- Certifique-se de que todos os caminhos no `.env.spark` são absolutos e estão corretos
+- Verifique as versões do Docker e Docker Compose
+- Confirme se as portas de rede não estão sendo utilizadas por outros serviços
 
-## Configuration Files
-- `docker-compose.yml`: Defines the multi-container Spark cluster
-- `Dockerfile`: Builds the base Spark image
-- `build/conf/spark-defaults.conf`: Spark configuration
+## Arquivos de Configuração
+- `docker-compose.yml`: Define o cluster Spark com múltiplos containers
+- `Dockerfile`: Constrói a imagem base do Spark
+- `build/conf/spark-defaults.conf`: Configuração do Spark
