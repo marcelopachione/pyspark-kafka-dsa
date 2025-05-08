@@ -28,6 +28,10 @@ import  os
 from pyspark.sql import SparkSession, types
 from pyspark.sql.functions import col, regexp_replace
 
+# Env
+os.environ['TERM'] = 'xterm'
+os.system('clear')
+
 spark = SparkSession.builder \
     .appName("ETL JSON to SQLite") \
     .getOrCreate()
@@ -93,6 +97,8 @@ else:
         mode=write_mode,
         properties=jdbc_properties
     )
+
+    df_cleaned.show()
 
     print(f"Data loaded into database successfully in 'dsa_usuarios.db' using mode '{write_mode}'.")
 
